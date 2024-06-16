@@ -14,7 +14,7 @@ const io = new Server(server, {
   cors: {
     origin: [
       "https://location-tracker-six.vercel.app",
-      "http://localhost:5173"
+      "http://localhost:5173",
     ],
     methods: ["GET", "POST"],
   },
@@ -25,7 +25,6 @@ app.use(express.json());
 app.use("/api/location", locationRouter);
 
 io.on("connection", (socket) => {
-  console.log("A user connected");
   socket.on("locationUpdate", (location) => {
     io.emit("locationUpdated", location);
   });
